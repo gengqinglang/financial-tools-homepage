@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金融工具首页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #CAF4F7;
+            min-height: 100vh;
+            color: #2D3748;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px 16px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 24px 0;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1A202C;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #4A5568;
+            opacity: 0.8;
+        }
+
+        .category {
+            margin-bottom: 32px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2D3748;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #CAF4F7;
+            display: flex;
+            align-items: center;
+        }
+
+        .category-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            background: #2D3748;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .tools-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tool-item {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+        }
+
+        .tool-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-color: #CAF4F7;
+        }
+
+        .tool-item:active {
+            transform: translateY(0);
+        }
+
+        .tool-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1A202C;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .tool-description {
+            font-size: 14px;
+            color: #718096;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .tool-arrow {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #A0AEC0;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .tool-item:hover .tool-arrow {
+            color: #2D3748;
+            transform: translateY(-50%) translateX(2px);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 24px 0;
+            color: #718096;
+            font-size: 14px;
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 16px 12px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .header p {
+                font-size: 14px;
+            }
+            
+            .category {
+                padding: 16px;
+                margin-bottom: 24px;
+            }
+            
+            .category-title {
+                font-size: 16px;
+            }
+            
+            .tool-item {
+                padding: 14px;
+            }
+            
+            .tool-name {
+                font-size: 15px;
+            }
+            
+            .tool-description {
+                font-size: 13px;
+            }
+        }
+
+        /* 深色模式支持 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1A202C;
+                color: #E2E8F0;
+            }
+            
+            .header h1 {
+                color: #F7FAFC;
+            }
+            
+            .header p {
+                color: #A0AEC0;
+            }
+            
+            .category {
+                background: rgba(45, 55, 72, 0.8);
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            .category-title {
+                color: #F7FAFC;
+                border-bottom-color: #4A5568;
+            }
+            
+            .category-icon {
+                background: #4A5568;
+            }
+            
+            .tool-item {
+                background: #2D3748;
+                border-color: #4A5568;
+            }
+            
+            .tool-item:hover {
+                border-color: #CAF4F7;
+            }
+            
+            .tool-name {
+                color: #F7FAFC;
+            }
+            
+            .tool-description {
+                color: #A0AEC0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>金融工具</h1>
+            <p>专业的财务决策助手</p>
+        </div>
+
+        <!-- 综合评估与决策 -->
+        <div class="category">
+            <div class="category-title">
+                <div class="category-icon">📊</div>
+                综合评估与决策
+            </div>
+            <div class="tools-list">
+                <a href="https://debt-01.lovable.app/" class="tool-item">
+                    <div class="tool-name">家庭负债看板</div>
+                    <div class="tool-description">统一管理家庭负债情况，直观展示债务结构和还款进度</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/debt-burden-ratio" class="tool-item">
+                    <div class="tool-name">债务负担率计算器</div>
+                    <div class="tool-description">计算月债务还款总额占家庭月收入的比例，评估债务健康度</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/loan-comparison" class="tool-item">
+                    <div class="tool-name">贷款比较计算器</div>
+                    <div class="tool-description">并排对比不同银行贷款方案的利率、费用和月供</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/credit-loan-estimator" class="tool-item">
+                    <div class="tool-name">信用贷款测算器</div>
+                    <div class="tool-description">根据个人信用评级和收入水平，估算可贷金额和可能的利率</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 按揭贷款类 -->
+        <div class="category">
+            <div class="category-title">
+                <div class="category-icon">🏠</div>
+                按揭贷款类
+            </div>
+            <div class="tools-list">
+                <a href="https://example.com/mortgage-calculator" class="tool-item">
+                    <div class="tool-name">房贷月供计算器</div>
+                    <div class="tool-description">计算商业贷款、公积金贷款或组合贷款的月还款金额和总利息</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/mortgage-term-optimizer" class="tool-item">
+                    <div class="tool-name">房贷期限优化计算器</div>
+                    <div class="tool-description">分析不同还款期限对月供和总利息的影响，帮您找到平衡点</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/early-repayment" class="tool-item">
+                    <div class="tool-name">提前还贷测算器</div>
+                    <div class="tool-description">计算部分或全部提前还款节省的利息，以及后续月供变化</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/car-loan-calculator" class="tool-item">
+                    <div class="tool-name">车贷计算器</div>
+                    <div class="tool-description">计算车贷月供和总利息，支持全款与贷款方案对比</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 消费债务类 -->
+        <div class="category">
+            <div class="category-title">
+                <div class="category-icon">💳</div>
+                消费债务类
+            </div>
+            <div class="tools-list">
+                <a href="https://example.com/credit-card-planner" class="tool-item">
+                    <div class="tool-name">信用卡债务规划器</div>
+                    <div class="tool-description">管理信用卡债务，规划还款路径</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/debt-snowball-avalanche" class="tool-item">
+                    <div class="tool-name">债务雪球/雪崩计算器</div>
+                    <div class="tool-description">应用雪球法或雪崩法策略，规划还款顺序和时间</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/debt-consolidation" class="tool-item">
+                    <div class="tool-name">债务合并分析计算器</div>
+                    <div class="tool-description">分析将多个高息债务合并为一个低息贷款是否值得</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/installment-optimizer" class="tool-item">
+                    <div class="tool-name">分期付款优化计算器</div>
+                    <div class="tool-description">计算分期付款的实际年化利率，对比不同期数的费用差异</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 现金流与规划 -->
+        <div class="category">
+            <div class="category-title">
+                <div class="category-icon">💰</div>
+                现金流与规划
+            </div>
+            <div class="tools-list">
+                <a href="https://example.com/cash-flow-forecast" class="tool-item">
+                    <div class="tool-name">家庭现金流预测计算器</div>
+                    <div class="tool-description">基于未来预期收入和支出，预测月度/年度现金流</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/repayment-capacity" class="tool-item">
+                    <div class="tool-name">偿债能力评估计算器</div>
+                    <div class="tool-description">计算满足基本生活开支后，每月可用于债务还款的最大金额</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/education-loan-planner" class="tool-item">
+                    <div class="tool-name">教育金贷款规划器</div>
+                    <div class="tool-description">规划教育贷款，计算还款金额和期限</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 工具与辅助 -->
+        <div class="category">
+            <div class="category-title">
+                <div class="category-icon">🔧</div>
+                工具与辅助
+            </div>
+            <div class="tools-list">
+                <a href="https://example.com/interest-rate-converter" class="tool-item">
+                    <div class="tool-name">利率转换计算器</div>
+                    <div class="tool-description">精确计算和对比不同贷款产品的年化利率(APR)和年化收益率</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/currency-converter" class="tool-item">
+                    <div class="tool-name">货币换算计算器</div>
+                    <div class="tool-description">支持多种货币实时换算，特别适合有外币债务的家庭</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/unit-converter" class="tool-item">
+                    <div class="tool-name">单位换算计算器</div>
+                    <div class="tool-description">进行长度、面积、体积、重量等单位换算</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/tax-calculator" class="tool-item">
+                    <div class="tool-name">税费计算器</div>
+                    <div class="tool-description">计算劳务报酬个人所得税，以及贷款利息可能的税费抵扣</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+                <a href="https://example.com/compound-interest" class="tool-item">
+                    <div class="tool-name">复合利息计算器</div>
+                    <div class="tool-description">计算复利下储蓄或投资的未来价值，鼓励储蓄和减债</div>
+                    <div class="tool-arrow">→</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 金融工具首页</p>
+        </div>
+    </div>
+</body>
+</html>
